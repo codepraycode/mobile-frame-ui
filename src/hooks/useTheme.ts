@@ -1,16 +1,21 @@
 import { useState, useEffect } from 'react';
+import { brand } from '../config/brand';
 
 type Theme = 'light' | 'dark';
 
 export function useTheme() {
+    const appName = brand.appName;
+    const themeStoreKey = `${appName}-theme`;
+
     const [theme, setTheme] = useState<Theme>(() => {
-        const saved = localStorage.getItem('tm-bot-theme');
+        const saved = localStorage.getItem(themeStoreKey);
         if (saved === 'light' || saved === 'dark') return saved;
-        return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        // Default to light mode as requested
+        return 'light';
     });
 
     useEffect(() => {
-        localStorage.setItem('tm-bot-theme', theme);
+        localStorage.setItem(themeStoreKey, theme);
     }, [theme]);
 
     const toggleTheme = () => {
