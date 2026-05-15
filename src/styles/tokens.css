@@ -1,0 +1,88 @@
+/* ── Brand scale (green) ─────────────────────────────────────────── */
+:root {
+    --brand-rgb: 29, 171, 112; /* R,G,B of --brand-500 for rgba() use */
+    --brand-700: #0b6b3e;
+    --brand-600: #0e8b50;
+    --brand-500: #1dab70; /* primary green */
+    --brand-400: #2fc882;
+    --brand-300: #5dd9a0;
+    --brand-200: #9ae8c5;
+    --brand-100: #cef4e0;
+    --brand-50: #edfaf4;
+
+    /* Status */
+    --color-error: #fb7185;
+    --color-success: #1dab70;
+    --color-warning: #f59e0b;
+    --color-info: #3b82f6;
+
+    /* Spacing */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-2xl: 48px;
+
+    /* Radii */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+
+    /* Font sizes */
+    --text-xs: 12px;
+    --text-sm: 13px;
+    --text-md: 15px;
+    --text-lg: 17px;
+    --text-xl: 20px;
+    --text-2xl: 24px;
+    --text-3xl: 32px;
+}
+
+/* ── Dark theme (default) ─────────────────────────────────────────── */
+[data-theme='dark'] {
+    --bg: #09090b;
+    --surface: #121214;
+    --surface-elevated: #1e1e21;
+    --surface-hover: #27272a;
+    --border: #27272a;
+    --text: #f4f4f5;
+    --text-secondary: #a1a1aa;
+    --text-muted: #71717a;
+    --icon: #a1a1aa;
+
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.6), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 16px 24px -4px rgba(0, 0, 0, 0.7), 0 8px 12px -4px rgba(0, 0, 0, 0.5);
+    --shadow-xl: 0 24px 48px rgba(0, 0, 0, 0.8);
+
+    --bg-pattern:
+        radial-gradient(circle at top center, rgba(var(--brand-rgb), 0.08), transparent 50%),
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+}
+
+/* ── Light theme ──────────────────────────────────────────────────── */
+[data-theme='light'] {
+    --bg: #fcfcfc;
+    --surface: #ffffff;
+    --surface-elevated: #f4f4f5;
+    --surface-hover: #e4e4e7;
+    --border: #e4e4e7;
+    --text: #09090b;
+    --text-secondary: #52525b;
+    --text-muted: #a1a1aa;
+    --icon: #71717a;
+
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --shadow-lg: 0 16px 24px -4px rgba(0, 0, 0, 0.06), 0 8px 12px -4px rgba(0, 0, 0, 0.04);
+    --shadow-xl: 0 24px 48px rgba(0, 0, 0, 0.08);
+
+    --bg-pattern:
+        radial-gradient(circle at top center, rgba(var(--brand-rgb), 0.05), transparent 50%),
+        linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+}

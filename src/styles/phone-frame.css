@@ -1,0 +1,771 @@
+/* ── Phone Sandbox Wrapper (desktop backdrop) ─────────────────────── */
+.phone-sandbox {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+    overflow: auto;
+    /* Allow scrolling if frame is larger than viewport */
+    background-attachment: fixed;
+    /* Subtle dot grid */
+    background-image:
+        radial-gradient(ellipse at 30% 20%, rgba(var(--brand-rgb), 0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 80%, rgba(var(--brand-rgb), 0.1) 0%, transparent 50%),
+        radial-gradient(circle, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(135deg, #0d0d14 0%, #11111c 50%, #0a0a12 100%);
+    background-size:
+        100% 100%,
+        100% 100%,
+        28px 28px,
+        100% 100%;
+}
+
+/* ── Phone Shell ──────────────────────────────────────────────────── */
+.phone-shell {
+    position: relative;
+    width: 390px;
+    height: 844px;
+    border-radius: 52px;
+    background: #18181b;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        0 0 0 10px #09090b,
+        0 0 0 11px rgba(255, 255, 255, 0.07),
+        0 0 0 12px #09090b,
+        0 0 0 13px rgba(255, 255, 255, 0.12),
+        0 40px 80px rgba(0, 0, 0, 0.7),
+        0 8px 24px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    flex-shrink: 0;
+
+    /* Volume buttons — left side */
+    --btn-color: #09090b;
+}
+
+/* Side buttons via pseudo-elements */
+.phone-shell::before {
+    content: '';
+    position: absolute;
+    left: -13px;
+    top: 126px;
+    width: 3px;
+    height: 36px;
+    border-radius: 3px 0 0 3px;
+    background: #09090b;
+    box-shadow:
+        0 46px 0 #09090b,
+        -1px 0 0 rgba(255, 255, 255, 0.08),
+        0 46px 0 0 rgba(255, 255, 255, 0.08);
+}
+
+.phone-shell::after {
+    content: '';
+    position: absolute;
+    right: -13px;
+    top: 160px;
+    width: 3px;
+    height: 76px;
+    border-radius: 0 3px 3px 0;
+    background: #09090b;
+    box-shadow: 1px 0 0 rgba(255, 255, 255, 0.08);
+}
+
+/* ── Phone Top Chrome ─────────────────────────────────────────────── */
+.phone-top-chrome {
+    background: #09090b;
+    padding: 14px 20px 0;
+    flex-shrink: 0;
+    border-radius: 52px 52px 0 0;
+    position: relative;
+}
+
+/* Dynamic Island (notch pill) */
+.phone-notch {
+    width: 126px;
+    height: 37px;
+    background: #000;
+    border-radius: 20px;
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 12px;
+    gap: 7px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+/* Camera dot inside islands */
+.phone-notch-camera {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #2c2c52, #09090f);
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.06),
+        inset 0 0 4px rgba(99, 80, 241, 0.3);
+}
+
+/* Status bar */
+.phone-statusbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6px 10px;
+    color: #fafafa;
+}
+
+.phone-statusbar-time {
+    font-size: 15px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.3px;
+}
+
+.phone-statusbar-icons {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.phone-statusbar-icons svg {
+    opacity: 0.9;
+}
+
+/* ── Phone Screen (app lives here) ───────────────────────────────── */
+.phone-screen {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg, #09090b);
+}
+
+/* ── Home Bar ─────────────────────────────────────────────────────── */
+.phone-homebar {
+    background: #09090b;
+    padding: 8px 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 0 0 52px 52px;
+}
+
+.phone-homebar-indicator {
+    width: 134px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 3px;
+}
+
+/* ── Light-theme shell ────────────────────────────────────────────── */
+[data-theme='light'] .phone-shell {
+    background: #f8fafc;
+    box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.08),
+        0 0 0 10px #e2e8f0,
+        0 0 0 11px rgba(0, 0, 0, 0.06),
+        0 0 0 12px #e2e8f0,
+        0 0 0 13px rgba(0, 0, 0, 0.1),
+        0 40px 80px rgba(0, 0, 0, 0.25),
+        0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme='light'] .phone-top-chrome,
+[data-theme='light'] .phone-homebar {
+    background: #f1f5f9;
+}
+
+[data-theme='light'] .phone-shell::before,
+[data-theme='light'] .phone-shell::after {
+    background: #e2e8f0;
+}
+
+[data-theme='light'] .phone-statusbar {
+    color: #0f172a;
+}
+
+[data-theme='light'] .phone-homebar-indicator {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme='light'] .phone-sandbox {
+    background-image:
+        radial-gradient(ellipse at 30% 20%, rgba(var(--brand-rgb), 0.1) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 80%, rgba(var(--brand-rgb), 0.06) 0%, transparent 50%),
+        radial-gradient(circle, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+        linear-gradient(135deg, #dde3ed 0%, #e8edf5 50%, #d8e0ec 100%);
+    background-size:
+        100% 100%,
+        100% 100%,
+        28px 28px,
+        100% 100%;
+}
+
+/* ── Responsive: very small screens — go full viewport ───────────── */
+@media (max-width: 430px) {
+    .phone-sandbox {
+        padding: 0;
+        align-items: stretch;
+    }
+
+    .phone-shell {
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .phone-shell::before,
+    .phone-shell::after {
+        display: none;
+    }
+
+    .phone-top-chrome {
+        border-radius: 0;
+    }
+
+    .phone-homebar {
+        border-radius: 0;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   TABLET SHELL
+═══════════════════════════════════════════════════════════════════ */
+.tablet-shell {
+    position: relative;
+    width: 768px;
+    height: 1024px;
+    border-radius: 28px;
+    background: #18181b;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        0 0 0 10px #09090b,
+        0 0 0 11px rgba(255, 255, 255, 0.07),
+        0 0 0 12px #09090b,
+        0 0 0 13px rgba(255, 255, 255, 0.12),
+        0 48px 100px rgba(0, 0, 0, 0.75),
+        0 12px 32px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+/* Side power button */
+.tablet-shell::after {
+    content: '';
+    position: absolute;
+    right: -13px;
+    top: 140px;
+    width: 3px;
+    height: 56px;
+    border-radius: 0 3px 3px 0;
+    background: #09090b;
+    box-shadow: 1px 0 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Volume buttons — left side */
+.tablet-shell::before {
+    content: '';
+    position: absolute;
+    left: -13px;
+    top: 200px;
+    width: 3px;
+    height: 38px;
+    border-radius: 3px 0 0 3px;
+    background: #09090b;
+    box-shadow:
+        0 52px 0 #09090b,
+        -1px 0 0 rgba(255, 255, 255, 0.08);
+}
+
+/* ── Tablet top chrome ────────────────────────────────────────────── */
+.tablet-top-chrome {
+    background: #09090b;
+    padding: 12px 24px 0;
+    flex-shrink: 0;
+    border-radius: 28px 28px 0 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.tablet-statusbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4px 6px;
+    color: #fafafa;
+}
+
+/* Centred camera dot */
+.tablet-camera {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #2c2c52, #09090f);
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.06),
+        inset 0 0 4px rgba(var(--brand-rgb), 0.3);
+    margin-bottom: 8px;
+}
+
+/* ── Tablet home bar ──────────────────────────────────────────────── */
+.tablet-homebar {
+    background: #09090b;
+    padding: 12px 0 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 0 0 28px 28px;
+}
+
+.tablet-home-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #1c1c1f;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* ── Light-theme tablet ───────────────────────────────────────────── */
+[data-theme='light'] .tablet-shell {
+    background: #f8fafc;
+    box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.08),
+        0 0 0 10px #e2e8f0,
+        0 0 0 11px rgba(0, 0, 0, 0.06),
+        0 0 0 12px #e2e8f0,
+        0 0 0 13px rgba(0, 0, 0, 0.1),
+        0 48px 100px rgba(0, 0, 0, 0.18),
+        0 12px 32px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='light'] .tablet-top-chrome,
+[data-theme='light'] .tablet-homebar {
+    background: #f1f5f9;
+}
+
+[data-theme='light'] .tablet-shell::before,
+[data-theme='light'] .tablet-shell::after {
+    background: #e2e8f0;
+}
+
+[data-theme='light'] .tablet-statusbar {
+    color: #0f172a;
+}
+
+[data-theme='light'] .tablet-home-btn {
+    background: #e2e8f0;
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* ── Tablet sandbox: wider backdrop padding ───────────────────────── */
+[data-device='tablet'].phone-sandbox {
+    padding: 32px 24px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   DEVICE SWITCHER PILL
+═══════════════════════════════════════════════════════════════════ */
+.device-switcher {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    background: rgba(18, 18, 24, 0.75);
+    backdrop-filter: blur(16px) saturate(1.4);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    padding: 4px;
+    box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.4),
+        0 1px 4px rgba(0, 0, 0, 0.3);
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.device-switcher.dragging {
+    cursor: grabbing;
+    box-shadow:
+        0 12px 32px rgba(0, 0, 0, 0.6),
+        0 4px 12px rgba(0, 0, 0, 0.4);
+    transform: scale(1.02);
+    /* Slight lift effect */
+    transition:
+        transform 0.1s ease,
+        box-shadow 0.1s ease;
+}
+
+.device-switcher-handle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6px 0 8px;
+    color: rgba(255, 255, 255, 0.4);
+    cursor: grab;
+}
+
+.device-switcher.dragging .device-switcher-handle {
+    cursor: grabbing;
+}
+
+.device-switcher-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition:
+        background 0.18s ease,
+        color 0.18s ease,
+        transform 0.15s ease;
+    white-space: nowrap;
+    outline: none;
+}
+
+.device-switcher.dragging .device-switcher-btn {
+    pointer-events: none;
+}
+
+.device-switcher-btn:hover {
+    color: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.device-switcher-btn.active {
+    background: var(--brand-500);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(var(--brand-rgb), 0.45);
+}
+
+.device-switcher-btn.active:hover {
+    background: var(--brand-600);
+}
+
+/* Light theme switcher */
+.device-switcher[data-theme='light'] {
+    background: rgba(240, 244, 250, 0.85);
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.12),
+        0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.device-switcher[data-theme='light'].dragging {
+    box-shadow:
+        0 12px 32px rgba(0, 0, 0, 0.2),
+        0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.device-switcher[data-theme='light'] .device-switcher-handle {
+    color: rgba(15, 23, 42, 0.4);
+}
+
+.device-switcher[data-theme='light'] .device-switcher-btn {
+    color: rgba(15, 23, 42, 0.5);
+}
+
+.device-switcher[data-theme='light'] .device-switcher-btn:hover {
+    color: rgba(15, 23, 42, 0.85);
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.device-switcher[data-theme='light'] .device-switcher-btn.active {
+    color: #fff;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   PC / MONITOR SHELL — premium redesign
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Outer wrapper includes the stand below the screen */
+.pc-shell-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+body:has(.pc-shell-wrapper) {
+    /* background-color: red; */
+    overflow-y: hidden;
+}
+
+.pc-shell {
+    position: relative;
+    /* width: 1440px; */
+    /* Fixed PC width */
+    /* height: 900px; */
+    /* Fixed PC height */
+
+    width: min(1440px, calc(100vw - 80px));
+    height: min(900px, calc(100vh - 140px));
+
+    /* Metallic bezel */
+    background: linear-gradient(170deg, #2a2a2a 0%, #1a1a1a 40%, #222222 100%);
+    border-radius: 14px 14px 6px 6px;
+    padding: 18px 18px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    box-shadow:
+        /* Inner screen edge highlight */
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.5),
+        /* Outer bezel ring */
+        0 0 0 1px rgba(255, 255, 255, 0.07),
+        /* Ambient glow — uses brand color */
+        0 0 60px rgba(var(--brand-rgb), 0.1),
+        /* Drop shadow */
+        0 40px 80px rgba(0, 0, 0, 0.7),
+        0 12px 30px rgba(0, 0, 0, 0.5);
+    flex-shrink: 0;
+}
+
+/* Bottom bezel flat strip */
+.pc-shell::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 28px;
+    background: linear-gradient(180deg, #252525, #1a1a1a);
+    border-radius: 0 0 6px 6px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Brand dot on bottom bezel */
+.pc-shell::after {
+    content: '';
+    position: absolute;
+    bottom: 9px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 2px;
+}
+
+/* ── Browser-style top chrome ────────────────────────────────────── */
+.pc-top-chrome {
+    height: 40px;
+    background: #141414;
+    border-radius: 6px 6px 0 0;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    gap: 12px;
+    flex-shrink: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Traffic light dots */
+.pc-dots {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.pc-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.pc-dot.red {
+    background: #ff5f57;
+    box-shadow: 0 0 4px rgba(255, 95, 87, 0.5);
+}
+
+.pc-dot.yellow {
+    background: #febc2e;
+    box-shadow: 0 0 4px rgba(254, 188, 46, 0.4);
+}
+
+.pc-dot.green {
+    background: #28c840;
+    box-shadow: 0 0 4px rgba(40, 200, 64, 0.4);
+}
+
+/* Fake URL / tab bar */
+.pc-urlbar {
+    flex: 1;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    gap: 6px;
+    overflow: hidden;
+}
+
+.pc-urlbar-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(var(--brand-rgb), 0.7);
+    flex-shrink: 0;
+}
+
+.pc-urlbar-text {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.28);
+    font-family: ui-monospace, monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 0.01em;
+}
+
+/* ── Screen area ─────────────────────────────────────────────────── */
+.pc-screen {
+    flex: 1;
+    background: var(--bg, #111111);
+    overflow: hidden;
+    position: relative;
+    /* Subtle inner vignette for depth */
+    box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.25);
+}
+
+/* ── Monitor neck + base ─────────────────────────────────────────── */
+.pc-stand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.pc-neck {
+    width: 100px;
+    height: 48px;
+    background: linear-gradient(180deg, #1e1e1e 0%, #181818 100%);
+    clip-path: polygon(30% 0%, 70% 0%, 85% 100%, 15% 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.pc-base {
+    width: 260px;
+    height: 14px;
+    background: linear-gradient(180deg, #202020 0%, #181818 100%);
+    border-radius: 6px 6px 4px 4px;
+    box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* ── Light-theme PC ───────────────────────────────────────────────── */
+[data-theme='light'] .pc-shell {
+    background: linear-gradient(170deg, #d8d8d8 0%, #c8c8c8 40%, #d2d2d2 100%);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.7),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(0, 0, 0, 0.08),
+        0 0 40px rgba(16, 154, 94, 0.06),
+        0 40px 80px rgba(0, 0, 0, 0.2),
+        0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme='light'] .pc-shell::before {
+    background: linear-gradient(180deg, #cccccc, #bebebe);
+    border-top-color: rgba(0, 0, 0, 0.12);
+}
+
+[data-theme='light'] .pc-shell::after {
+    background: rgba(0, 0, 0, 0.12);
+}
+
+[data-theme='light'] .pc-top-chrome {
+    background: #ebebeb;
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='light'] .pc-urlbar {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='light'] .pc-urlbar-text {
+    color: rgba(20, 20, 20, 0.35);
+}
+
+[data-theme='light'] .pc-neck {
+    background: linear-gradient(180deg, #c8c8c8 0%, #b8b8b8 100%);
+    border-top-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='light'] .pc-base {
+    background: linear-gradient(180deg, #d0d0d0 0%, #bfbfbf 100%);
+    box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+[data-theme='light'] .pc-screen {
+    box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.07);
+}
+
+/* ── PC sandbox backdrop ─────────────────────────────────────────── */
+[data-device='pc'].phone-sandbox {
+    padding: 48px 40px 100px;
+    /* Richer ambient background for PC view */
+    background-image:
+        radial-gradient(ellipse at 25% 10%, rgba(var(--brand-rgb), 0.14) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 85%, rgba(var(--brand-rgb), 0.08) 0%, transparent 45%),
+        radial-gradient(ellipse at 60% 40%, rgba(var(--brand-rgb), 0.04) 0%, transparent 40%),
+        radial-gradient(circle, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(145deg, #0a0f0d 0%, #0d1410 40%, #090e0c 100%);
+    background-size:
+        100% 100%,
+        100% 100%,
+        100% 100%,
+        28px 28px,
+        100% 100%;
+}
+
+[data-theme='light'][data-device='pc'].phone-sandbox {
+    background-image:
+        radial-gradient(ellipse at 25% 10%, rgba(var(--brand-rgb), 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 85%, rgba(var(--brand-rgb), 0.06) 0%, transparent 45%),
+        radial-gradient(circle, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(145deg, #dde8e3 0%, #e4ede8 40%, #d8e5e0 100%);
+    background-size:
+        100% 100%,
+        100% 100%,
+        28px 28px,
+        100% 100%;
+}
