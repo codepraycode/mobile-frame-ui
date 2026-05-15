@@ -1,5 +1,7 @@
 {
   "name": "mobile-frame-ui",
+  "description": "A UI wrapper to simulate and preview web applications across different major devices",
+  "author": "codepraycode",
   "private": true,
   "version": "0.1.0",
   "type": "module",
