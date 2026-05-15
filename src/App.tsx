@@ -12,7 +12,7 @@ import { applyTheme } from './config/colors';
 const viewport_size = {
     phone: 640,
     tablet: 1024,
-}
+};
 
 export default function App() {
     const [device, setDevice] = useState<DeviceType>('phone');
@@ -56,22 +56,22 @@ export default function App() {
                     color: 'var(--text)',
                     position: 'relative',
                     alignItems: 'center',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
                 }}
             >
                 <div style={{ textAlign: 'center', padding: '2rem' }}>
-                    <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Template App</h1>
+                    <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>{brand.appName}</h1>
                     <p>Build your next project here.</p>
-                    <button 
+                    <button
                         onClick={toggleTheme}
                         style={{
                             marginTop: '1rem',
                             padding: '0.5rem 1rem',
                             background: 'var(--primary)',
-                            color: 'white',
+                            color: 'var(--text-secondary)',
                             border: 'none',
                             borderRadius: '4px',
-                            cursor: 'pointer'
+                            cursor: 'pointer',
                         }}
                     >
                         Toggle Theme ({theme})
